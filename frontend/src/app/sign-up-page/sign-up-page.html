@@ -1,0 +1,40 @@
+<div class="page-container">
+  <div class="form-container">
+    <div class="form-header">
+      <h1 class="form-title">Create an account</h1>
+      <p class="form-subtitle">
+        See order history, get a game library and check out faster!
+      </p>
+    </div>
+    <form class="register-form">
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required>
+      </div>
+      <ul class="password-rules">
+        <li>At least 8 characters</li>
+        <li>Special character or a digit</li>
+        <li>At least 1 small letter</li>
+        <li>At least 1 capital letter</li>
+      </ul>
+      <button type="submit" class="submit-button">
+        Create account
+      </button>
+    </form>
+    <div class="form-footer">
+      <p>
+        Have an account already?
+        <a routerLink="/login">Sign in</a>
+      </p>
+    </div>
+    <div class="terms">
+      By clicking “Create account” you agree you've read and accept our
+      <a href="#">Terms and Conditions</a>.
+      Please read our <a href="#">Privacy Policy</a>.
+    </div>
+  </div>
+</div>

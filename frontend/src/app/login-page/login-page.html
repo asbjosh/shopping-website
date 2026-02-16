@@ -1,0 +1,30 @@
+<div class="page-container">
+  <div class="form-container">
+    <div class="form-header">
+      <h1 class="form-title">Sign in</h1>
+    </div>
+    <form class="login-form">
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input id="password" type="password" name="password" required>
+          <button type="button" class="toggle-password">Show</button>
+        </div>
+      </div>
+      <div class="forgot-row">
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+      <button type="submit" class="submit-button">Sign in</button>
+    </form>
+    <div class="form-footer">
+      <p>
+        New to the site? Start your journey!
+        <a routerLink="/signup">Create an account</a>
+      </p>
+    </div>
+  </div>
+</div>
