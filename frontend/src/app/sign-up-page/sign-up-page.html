@@ -1,40 +1,95 @@
-<div class="page-container">
-  <div class="form-container">
-    <div class="form-header">
-      <h1 class="form-title">Create an account</h1>
-      <p class="form-subtitle">
-        See order history, get a game library and check out faster!
-      </p>
-    </div>
-    <form class="register-form">
-      <div class="form-field">
+<div class="page">
+  <div class="card">
+    <header class="header">
+      <h1>Create an account</h1>
+      <p>See order history, get a game library and check out faster!</p>
+    </header>
+
+    <form class="form" (ngSubmit)="onSubmit($event)">
+      <!-- Email -->
+      <div class="field">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" required>
+
+        <div class="input-wrap">
+          <input id="email" type="email" name="email" required />
+          <button type="button" class="suffix-icon" aria-label="Email helper" tabindex="-1">…</button>
+        </div>
       </div>
-      <div class="form-field">
+
+      <!-- Password -->
+      <div class="field">
         <label for="password">Password</label>
-        <input id="password" type="password" name="password" required>
+
+        <div class="input-wrap">
+          <input
+            id="password"
+            name="password"
+            [type]="showPassword ? 'text' : 'password'"
+            (input)="onPasswordInput($event)"
+            required
+          />
+
+          <button type="button" class="suffix-icon" aria-label="Password helper" tabindex="-1">…</button>
+
+          <button type="button" class="show-btn" (click)="toggleShowPassword()">
+            {{ showPassword ? 'Hide' : 'Show' }}
+          </button>
+        </div>
       </div>
-      <ul class="password-rules">
-        <li>At least 8 characters</li>
-        <li>Special character or a digit</li>
-        <li>At least 1 small letter</li>
-        <li>At least 1 capital letter</li>
+
+      <!-- Rules -->
+      <ul class="rules" aria-label="Password requirements">
+        <li
+          [class.rule-gray]="isPasswordEmpty"
+          [class.rule-ok]="!isPasswordEmpty && rules.minLength"
+          [class.rule-bad]="!isPasswordEmpty && !rules.minLength"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          At least 8 characters
+        </li>
+
+        <li
+          [class.rule-gray]="isPasswordEmpty"
+          [class.rule-ok]="!isPasswordEmpty && rules.specialOrDigit"
+          [class.rule-bad]="!isPasswordEmpty && !rules.specialOrDigit"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          Special character or a digit
+        </li>
+
+        <li
+          [class.rule-gray]="isPasswordEmpty"
+          [class.rule-ok]="!isPasswordEmpty && rules.lowercase"
+          [class.rule-bad]="!isPasswordEmpty && !rules.lowercase"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          At least 1 small letter
+        </li>
+
+        <li
+          [class.rule-gray]="isPasswordEmpty"
+          [class.rule-ok]="!isPasswordEmpty && rules.uppercase"
+          [class.rule-bad]="!isPasswordEmpty && !rules.uppercase"
+        >
+          <span class="dot" aria-hidden="true"></span>
+          At least 1 capital letter
+        </li>
       </ul>
-      <button type="submit" class="submit-button">
-        Create account
-      </button>
+
+      <button class="submit" type="submit">Create account</button>
     </form>
-    <div class="form-footer">
+
+    <footer class="footer">
       <p>
         Have an account already?
         <a routerLink="/login">Sign in</a>
       </p>
-    </div>
+    </footer>
+
     <div class="terms">
       By clicking “Create account” you agree you've read and accept our
-      <a href="#">Terms and Conditions</a>.
-      Please read our <a href="#">Privacy Policy</a>.
+      <a href="#">Terms and Conditions</a>. Please read our
+      <a href="#">Privacy Policy</a>.
     </div>
   </div>
 </div>
