@@ -5,78 +5,97 @@
       <p>See order history, get a game library and check out faster!</p>
     </header>
 
-    <form class="form" (ngSubmit)="onSubmit($event)">
-      <!-- Email -->
+    <form class="form" [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
       <div class="field">
         <label for="email">Email</label>
 
         <div class="input-wrap">
-          <input id="email" type="email" name="email" required />
-          <button type="button" class="suffix-icon" aria-label="Email helper" tabindex="-1">…</button>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+          />
+          <button
+            type="button"
+            class="suffix-icon"
+            aria-label="Email helper"
+            tabindex="-1"
+          >
+            …
+          </button>
         </div>
       </div>
-
-      <!-- Password -->
       <div class="field">
         <label for="password">Password</label>
 
         <div class="input-wrap">
           <input
             id="password"
-            name="password"
+            formControlName="password"
             [type]="showPassword ? 'text' : 'password'"
-            (input)="onPasswordInput($event)"
-            required
+            autocomplete="new-password"
           />
 
-          <button type="button" class="suffix-icon" aria-label="Password helper" tabindex="-1">…</button>
-
-          <button type="button" class="show-btn" (click)="toggleShowPassword()">
+          <button
+            type="button"
+            class="suffix-icon"
+            aria-label="Password helper"
+            tabindex="-1"
+          >
+            …
+          </button>
+          <button
+            type="button"
+            class="show-btn"
+            (click)="toggleShowPassword()"
+            [attr.aria-pressed]="showPassword"
+          >
             {{ showPassword ? 'Hide' : 'Show' }}
           </button>
         </div>
       </div>
-
-      <!-- Rules -->
       <ul class="rules" aria-label="Password requirements">
         <li
-          [class.rule-gray]="isPasswordEmpty"
-          [class.rule-ok]="!isPasswordEmpty && rules.minLength"
-          [class.rule-bad]="!isPasswordEmpty && !rules.minLength"
+          [class.rule-gray]="(passwordForm.get('password')?.value || '').length === 0"
+          [class.rule-ok]="(passwordForm.get('password')?.value || '').length > 0 && rules.minLength"
+          [class.rule-bad]="(passwordForm.get('password')?.value || '').length > 0 && !rules.minLength"
         >
           <span class="dot" aria-hidden="true"></span>
           At least 8 characters
         </li>
 
         <li
-          [class.rule-gray]="isPasswordEmpty"
-          [class.rule-ok]="!isPasswordEmpty && rules.specialOrDigit"
-          [class.rule-bad]="!isPasswordEmpty && !rules.specialOrDigit"
+          [class.rule-gray]="(passwordForm.get('password')?.value || '').length === 0"
+          [class.rule-ok]="(passwordForm.get('password')?.value || '').length > 0 && rules.specialOrDigit"
+          [class.rule-bad]="(passwordForm.get('password')?.value || '').length > 0 && !rules.specialOrDigit"
         >
           <span class="dot" aria-hidden="true"></span>
           Special character or a digit
         </li>
 
         <li
-          [class.rule-gray]="isPasswordEmpty"
-          [class.rule-ok]="!isPasswordEmpty && rules.lowercase"
-          [class.rule-bad]="!isPasswordEmpty && !rules.lowercase"
+          [class.rule-gray]="(passwordForm.get('password')?.value || '').length === 0"
+          [class.rule-ok]="(passwordForm.get('password')?.value || '').length > 0 && rules.lowercase"
+          [class.rule-bad]="(passwordForm.get('password')?.value || '').length > 0 && !rules.lowercase"
         >
           <span class="dot" aria-hidden="true"></span>
           At least 1 small letter
         </li>
 
         <li
-          [class.rule-gray]="isPasswordEmpty"
-          [class.rule-ok]="!isPasswordEmpty && rules.uppercase"
-          [class.rule-bad]="!isPasswordEmpty && !rules.uppercase"
+          [class.rule-gray]="(passwordForm.get('password')?.value || '').length === 0"
+          [class.rule-ok]="(passwordForm.get('password')?.value || '').length > 0 && rules.uppercase"
+          [class.rule-bad]="(passwordForm.get('password')?.value || '').length > 0 && !rules.uppercase"
         >
           <span class="dot" aria-hidden="true"></span>
           At least 1 capital letter
         </li>
       </ul>
 
-      <button class="submit" type="submit">Create account</button>
+      <button class="submit" type="submit" [disabled]="passwordForm.invalid">
+        Create account
+      </button>
     </form>
 
     <footer class="footer">
