@@ -25,6 +25,7 @@ export class SignUpPage {
 
   constructor(private fb: FormBuilder){
     this.passwordForm = this.fb.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
@@ -72,7 +73,7 @@ export class SignUpPage {
       return;
     }
 
-    const  { email, password } = this.passwordForm.value;
-    console.log('Submit:', { email, password})
+    const  { username, email, password } = this.passwordForm.value;
+    console.log('Submit:', { username, email, password})
   }
 }
