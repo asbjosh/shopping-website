@@ -51,18 +51,18 @@ export class SignUpPage {
     this.showPassword = !this.showPassword;
   }
 
-  hasUppercase(control: AbstractControl) {
-    const value = (control.value ?? '') as string;
+  hasUppercase(control: AbstractControl<string>) {
+    const value = (control.value ?? '');
     return value && !/[A-Z]/.test(value) ? { uppercase: true } : null;
   }
 
-  hasLowercase(control: AbstractControl) {
-    const value = (control.value ?? '') as string;
+  hasLowercase(control: AbstractControl<string>) {
+    const value = (control.value ?? '');
     return value && !/[a-z]/.test(value) ? { lowercase: true } : null;
   }
 
-  hasSpecialOrDigit(control: AbstractControl) {
-    const value = (control.value ?? '') as string;
+  hasSpecialOrDigit(control: AbstractControl<string>) {
+    const value = (control.value ?? '');
     return value && !/[\d\W_]/.test(value) ? { specialOrDigit: true } : null;
   }
 
@@ -71,8 +71,5 @@ export class SignUpPage {
       this.passwordForm.markAllAsTouched();
       return;
     }
-
-    const  { email, password } = this.passwordForm.value;
-    console.log('Submit:', { email, password})
   }
 }
