@@ -7,8 +7,15 @@
 
     <form class="form" [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
       <div class="field">
+        <label for="username">Username</label>
+        <div class="input-wrap">
+          <input
+          type="username"
+          formControlName="username">
+        </div>
+      </div>
+      <div class="field">
         <label for="email">Email</label>
-
         <div class="input-wrap">
           <input
             id="email"

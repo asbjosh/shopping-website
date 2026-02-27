@@ -25,6 +25,7 @@ export class SignUpPage {
 
   constructor(private fb: FormBuilder){
     this.passwordForm = this.fb.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
